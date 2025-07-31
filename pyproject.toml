@@ -1,14 +1,15 @@
 [project]
 name = "consultingai"
 version = "0.1.0"
-description = "Add your description here"
+description = "A sophisticated multi-agent system implementing Microsoft AutoGen's Society of Mind framework through consulting industry patterns"
 readme = "README.md"
 requires-python = ">=3.10"
 dependencies = [
     "pyautogen",
     "pydantic",
-    "pyyaml", 
-    "pytest"
+    "pyyaml",
+    "pytest",
+    "python-dotenv>=1.1.1",
 ]
 
 [dependency-groups]
@@ -19,4 +20,26 @@ dev = [
     "pytest-cov>=6.2.1",
 ]
 
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.black]
+line-length = 88
+target-version = ['py310']
+
+[tool.mypy]
+python_version = "3.10"
+warn_return_any = true
+warn_unused_configs = true
+disallow_untyped_defs = true
+strict = true
+
+[tool.pylint.messages_control]
+disable = ["C0114", "C0116"]  # missing docstrings
+
+[tool.pytest.ini_options]
+filterwarnings = [
+    "ignore::pydantic.warnings.PydanticDeprecatedSince20"
+]
 

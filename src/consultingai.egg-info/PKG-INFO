@@ -1,0 +1,29 @@
+Metadata-Version: 2.4
+Name: consultingai
+Version: 0.1.0
+Summary: Add your description here
+Requires-Python: >=3.10
+Description-Content-Type: text/markdown
+Requires-Dist: pyautogen
+Requires-Dist: pydantic
+Requires-Dist: pyyaml
+Requires-Dist: pytest
+Requires-Dist: python-dotenv>=1.1.1
+
+# ConsultingAI Digital Advisory Firm
+
+A sophisticated multi-agent system implementing Microsoft AutoGen's Society of Mind framework through consulting industry patterns.
+
+## Quick Start
+
+```bash
+# Setup environment
+python -m venv venv
+source venv/bin/activate  # or venv\Scripts\activate on Windows
+
+# Install dependencies
+pip install -r requirements.txt
+# OR with uv: uv pip install -r requirements.txt
+
+# Run setup
+python scripts/setup_environment.py
