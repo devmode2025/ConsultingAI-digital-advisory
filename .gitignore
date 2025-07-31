@@ -1,0 +1,22 @@
+Python
+pycache/
+*.py[cod]
+*$py.class
+*.so
+.Python
+venv/
+env/
+.env
+.venv
+Project specific
+data/backups/
+logs/*.log
+*.tmp
+IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+Academic
+.DS_Store
+Thumbs.db
