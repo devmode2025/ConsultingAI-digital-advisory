@@ -68,7 +68,21 @@ def main():
     
     # Sidebar navigation
     with st.sidebar:
-        st.image("https://via.placeholder.com/200x80/1e3a8a/ffffff?text=ConsultingAI", width=200)
+        # Replace the broken placeholder image with a professional text logo
+        st.markdown("""
+        <div style="
+            background: linear-gradient(90deg, #1e3a8a 0%, #3b82f6 100%);
+            color: white;
+            padding: 1.5rem;
+            text-align: center;
+            border-radius: 10px;
+            margin-bottom: 1rem;
+        ">
+            <h2 style="margin: 0; font-size: 1.5rem;">🏢 ConsultingAI</h2>
+            <p style="margin: 0.5rem 0 0 0; font-size: 0.9rem; opacity: 0.9;">Digital Advisory Firm</p>
+        </div>
+        """, unsafe_allow_html=True)
+        
         st.markdown("---")
         
         st.markdown("### 🎯 System Status")
