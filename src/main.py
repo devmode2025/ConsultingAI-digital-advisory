@@ -1,12 +1,17 @@
 """ConsultingAI Digital Advisory Firm - Main Entry Point
 
-Epic 1 Story 1.2: UserProxyAgent Foundation
+Epic 1 Story 1.2: UserProxyAgent Foundation with LLM Integration
 """
 import sys
 from pathlib import Path
 
 # Add src to path for imports
 sys.path.append(str(Path(__file__).parent))
+# Add project root to path for config imports
+sys.path.append(str(Path(__file__).parent.parent))
+
+# Import LLM configuration and verification
+from config.free_llm_config import OLLAMA_CONFIG, verify_ollama_connection
 
 # Import Story 1.1 components
 from agents.test_basic import verify_autogen_integration
@@ -21,13 +26,35 @@ from interfaces.human_interaction import demonstrate_human_interaction
 from utils.logging_config import setup_academic_logging, log_academic_milestone
 
 
+def verify_llm_integration() -> bool:
+    """Verify LLM integration is working
+    
+    Returns:
+        True if LLM is accessible, False otherwise
+    """
+    print("🤖 Verifying LLM Integration...")
+    
+    try:
+        # Test Ollama connection
+        if verify_ollama_connection():
+            print("✅ Ollama LLM connection verified")
+            return True
+        else:
+            print("⚠️  Ollama LLM connection failed - continuing with mock responses")
+            return False
+    except Exception as e:
+        print(f"⚠️  LLM verification error: {e} - continuing with mock responses")
+        return False
+
+
 def display_story_1_2_banner() -> None:
-    """Display Story 1.2 banner"""
+    """Display Story 1.2 banner with LLM status"""
     print("=" * 70)
     print("🏢 ConsultingAI Digital Advisory Firm")
-    print("📋 Epic 1 Story 1.2: UserProxyAgent Foundation")
+    print("📋 Epic 1 Story 1.2: UserProxyAgent Foundation with LLM Integration")
     print("=" * 70)
     print("🎯 Focus: Chief Engagement Manager (UserProxyAgent Extension)")
+    print("🤖 LLM: Ollama Llama 3.2:3b Integration")
     print("📊 Evaluation Weight: 35% - UserProxyAgent Implementation")
     print("-" * 70)
 

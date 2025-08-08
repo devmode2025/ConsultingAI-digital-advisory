@@ -9,6 +9,9 @@ from typing import Dict, Any, List, Optional
 import logging
 from datetime import datetime
 
+# Import LLM configuration
+from config.free_llm_config import OLLAMA_CONFIG
+
 
 class CodeReviewerAgent(autogen.AssistantAgent):
     """Code Reviewer Agent specializing in code quality and technical review
@@ -29,6 +32,7 @@ class CodeReviewerAgent(autogen.AssistantAgent):
         name: str = "code_reviewer",
         specialization_focus: str = "python_development",
         confidence_threshold: float = 0.85,
+        llm_config: Optional[Dict[str, Any]] = None,
         **kwargs
     ):
         """Initialize Code Reviewer Agent
@@ -37,15 +41,20 @@ class CodeReviewerAgent(autogen.AssistantAgent):
             name: Agent name for identification
             specialization_focus: Primary area of code review expertise
             confidence_threshold: Minimum confidence for autonomous decisions
+            llm_config: LLM configuration for AI-powered analysis
             **kwargs: Additional AssistantAgent parameters
         """
+        
+        # Configure LLM for code analysis
+        if llm_config is None:
+            llm_config = OLLAMA_CONFIG
         
         # Configure system message for code review expertise
         system_message = self._get_code_review_system_message(specialization_focus)
         
         # Configure default AssistantAgent settings
         default_kwargs = {
-            "llm_config": False,  # No LLM for academic demonstration
+            "llm_config": llm_config,  # Enable LLM for code analysis
             "max_consecutive_auto_reply": 2,
             "human_input_mode": "NEVER"
         }

@@ -5,11 +5,26 @@ from typing import Dict, Any, List
 import logging
 from datetime import datetime
 
+# Import LLM configuration
+from config.free_llm_config import OLLAMA_CONFIG
+
 
 class BusinessAnalystAgent(autogen.AssistantAgent):
     """Business Analyst Agent specializing in requirements and stakeholder analysis"""
     
-    def __init__(self, name: str = "business_analyst", **kwargs):
+    def __init__(self, name: str = "business_analyst", llm_config: Dict[str, Any] = None, **kwargs):
+        """Initialize Business Analyst Agent with LLM support
+        
+        Args:
+            name: Agent name for identification
+            llm_config: LLM configuration for AI-powered business analysis
+            **kwargs: Additional AssistantAgent parameters
+        """
+        
+        # Configure LLM for business analysis
+        if llm_config is None:
+            llm_config = OLLAMA_CONFIG
+            
         system_message = """You are a Business Analyst Agent at ConsultingAI Digital Advisory Firm.
         
 Your expertise includes:
@@ -22,7 +37,7 @@ Your expertise includes:
         super().__init__(
             name=name,
             system_message=system_message,
-            llm_config=False,
+            llm_config=llm_config,  # Enable LLM for business analysis
             human_input_mode="NEVER",
             **kwargs
         )
@@ -39,7 +54,7 @@ Your expertise includes:
         self.analysis_history = []
         self.logger = logging.getLogger(f"ConsultingAI.agents.{name}")
         
-        print(f"✅ {name} created successfully")
+        print(f"✅ {name} created successfully with LLM support")
     
     def analyze_business_requirements(self, context: Dict[str, Any]) -> Dict[str, Any]:
         """Analyze business requirements and stakeholder needs"""

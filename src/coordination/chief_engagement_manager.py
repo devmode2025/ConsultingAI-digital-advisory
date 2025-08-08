@@ -11,6 +11,12 @@ import json
 from datetime import datetime
 from .escalation_system import EscalationSystem, EscalationTier
 
+# Import LLM configuration
+import sys
+from pathlib import Path
+sys.path.append(str(Path(__file__).parent.parent.parent))
+from config.free_llm_config import OLLAMA_CONFIG
+
 
 class ChiefEngagementManager(autogen.UserProxyAgent):
     """Chief Engagement Manager - Advanced UserProxyAgent for ConsultingAI
@@ -21,6 +27,7 @@ class ChiefEngagementManager(autogen.UserProxyAgent):
     - Human expert persona routing
     - Multi-agent coordination oversight
     - Institutional memory integration
+    - LLM-powered decision support when needed
     
     Academic Note: This implementation demonstrates advanced UserProxyAgent
     patterns for 35% of assignment evaluation weight.
@@ -31,6 +38,7 @@ class ChiefEngagementManager(autogen.UserProxyAgent):
         name: str = "chief_engagement_manager",
         system_message: Optional[str] = None,
         escalation_config: Optional[Dict[str, float]] = None,
+        llm_config: Optional[Dict[str, Any]] = None,
         **kwargs
     ):
         """Initialize Chief Engagement Manager
@@ -39,6 +47,7 @@ class ChiefEngagementManager(autogen.UserProxyAgent):
             name: Agent name for identification
             system_message: Custom system message for agent behavior
             escalation_config: Configuration for escalation thresholds
+            llm_config: LLM configuration for AI-powered coordination
             **kwargs: Additional UserProxyAgent parameters
         """
         
@@ -48,6 +57,10 @@ class ChiefEngagementManager(autogen.UserProxyAgent):
             "tier_2_threshold": 0.70,
             "tier_3_threshold": 0.50
         }
+        
+        # Configure LLM for coordination assistance
+        if llm_config is None:
+            llm_config = OLLAMA_CONFIG
         
         # Default system message for consulting firm role
         if system_message is None:
@@ -59,6 +72,7 @@ class ChiefEngagementManager(autogen.UserProxyAgent):
             "max_consecutive_auto_reply": 3,
             "is_termination_msg": self._is_termination_message,
             "code_execution_config": False,  # Disable code execution for safety
+            "llm_config": llm_config,  # Enable LLM for coordination decisions
         }
         
         # Merge provided kwargs with defaults

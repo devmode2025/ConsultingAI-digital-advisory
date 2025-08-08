@@ -5,17 +5,37 @@ from typing import Dict, Any, List
 import logging
 from datetime import datetime
 
+# Import LLM configuration
+from config.free_llm_config import OLLAMA_CONFIG
+
 
 class SystemArchitectAgent(autogen.AssistantAgent):
     """System Architect Agent - Simplified for testing"""
     
-    def __init__(self, name: str = "system_architect", **kwargs):
+    def __init__(
+        self, 
+        name: str = "system_architect", 
+        llm_config: Dict[str, Any] = None,
+        **kwargs
+    ):
+        """Initialize System Architect Agent with LLM support
+        
+        Args:
+            name: Agent name for identification
+            llm_config: LLM configuration for AI-powered architecture analysis
+            **kwargs: Additional AssistantAgent parameters
+        """
+        
+        # Configure LLM for architecture analysis
+        if llm_config is None:
+            llm_config = OLLAMA_CONFIG
+            
         system_message = "You are a System Architect Agent at ConsultingAI Digital Advisory Firm."
         
         super().__init__(
             name=name,
             system_message=system_message,
-            llm_config=False,
+            llm_config=llm_config,  # Enable LLM for architecture decisions
             human_input_mode="NEVER",
             **kwargs
         )
@@ -32,7 +52,7 @@ class SystemArchitectAgent(autogen.AssistantAgent):
         self.architecture_history = []
         self.logger = logging.getLogger(f"ConsultingAI.agents.{name}")
         
-        print(f"✅ {name} created successfully")
+        print(f"✅ {name} created successfully with LLM support")
     
     def analyze_system_architecture(self, context: Dict[str, Any]) -> Dict[str, Any]:
         """Simple architecture analysis"""

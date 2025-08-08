@@ -1,22 +1,42 @@
-Python
-pycache/
+# Python cache files
+__pycache__/
 *.py[cod]
 *$py.class
 *.so
-.Python
+
+# Python build artifacts
+*.egg-info/
+build/
+dist/
+.eggs/
+
+# Virtual environments
 venv/
 env/
 .env
 .venv
-Project specific
-data/backups/
-logs/*.log
-*.tmp
-IDE
+
+# IDE files
 .vscode/
 .idea/
 *.swp
 *.swo
-Academic
+
+# System files
 .DS_Store
 Thumbs.db
+
+# Logs
+logs/
+*.log
+
+# Temporary files
+*.tmp
+*.temp
+
+# Project specific
+data/backups/
+logs/*.log
+
+# Academic
+.pytest_cache/
