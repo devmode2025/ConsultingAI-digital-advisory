@@ -63,6 +63,7 @@ def main():
         <h1>🏢 ConsultingAI Digital Advisory Firm</h1>
         <h3>Advanced Human-AI Collaboration Platform</h3>
         <p>Powered by Microsoft AutoGen Society of Mind Framework</p>
+        <p style="font-size: 0.9em; opacity: 0.9;">🤖 Enhanced with Ollama Local LLM Integration</p>
     </div>
     """, unsafe_allow_html=True)
     
@@ -89,6 +90,7 @@ def main():
         st.markdown('<p class="status-active">● AutoGen Framework: Active</p>', unsafe_allow_html=True)
         st.markdown('<p class="status-active">● Chief Engagement Manager: Ready</p>', unsafe_allow_html=True)
         st.markdown('<p class="status-active">● Multi-Agent Teams: Operational</p>', unsafe_allow_html=True)
+        st.markdown('<p class="status-active">● Ollama LLM: Integrated</p>', unsafe_allow_html=True)
         
         st.markdown("---")
         st.markdown("### 📊 Quick Metrics")
@@ -108,6 +110,7 @@ def main():
         - **⚡ Three-Tier Escalation** - Intelligent decision routing system  
         - **👥 Dynamic Expertise** - Human expert persona switching
         - **🏢 Professional Workflow** - Real consulting firm patterns
+        - **🔧 Ollama LLM Integration** - Local AI processing with privacy focus
         """)
         
         st.markdown("---")
@@ -140,6 +143,7 @@ def main():
     <div style="text-align: center; color: #6b7280; padding: 1rem;">
         <p>ConsultingAI Digital Advisory Firm | Advanced AI Engineering Assignment</p>
         <p>Demonstrating Microsoft AutoGen Society of Mind Framework</p>
+        <p style="font-size: 0.85em; opacity: 0.8;">🤖 Powered by Ollama Local LLM | 🔒 Privacy-First AI Processing</p>
     </div>
     """, unsafe_allow_html=True)
 
